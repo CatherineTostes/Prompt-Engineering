@@ -4,10 +4,8 @@ from rich.text import Text
 
 def print_llm_result(label, response):
     """
-    Imprime o rótulo, texto da resposta e uso de tokens com formatação colorida.
-
     Args:
-        label (str): Identificador do cenário (ex.: professor, student).
+        label (str): Identificador do cenário (ex.: professor, msg1).
         response: Objeto de mensagem do LangChain (ex.: AIMessage).
     """
 

@@ -1,27 +1,23 @@
-import os
+import sys
 from pathlib import Path
 
-try:
-    from dotenv import load_dotenv
-
-    load_dotenv(Path(__file__).resolve().parent / ".env")
-except ImportError:
-    pass
+_REPO = Path(__file__).resolve().parent.parent
+if str(_REPO) not in sys.path:
+    sys.path.insert(0, str(_REPO))
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
-from utils import print_llm_result
+from pe_shared.env import load_project_env, require_openai_key
+from pe_shared.llm_output import print_llm_result
+
+load_project_env(__file__)
+require_openai_key()
 
 try:
     import openai
 except Exception:
     openai = None
-
-if not os.getenv("OPENAI_API_KEY"):
-    raise RuntimeError(
-        "Defina OPENAI_API_KEY no ambiente ou num ficheiro .env na pasta do projeto."
-    )
 
 system_professor = """You are a university professor of computer science who is very technical
 and explain concepts with forma definitions and pseudocode."""
