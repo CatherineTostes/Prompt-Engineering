@@ -28,5 +28,5 @@ def require_openai_key() -> None:
     if not os.getenv("OPENAI_API_KEY"):
         raise RuntimeError(
             "Defina OPENAI_API_KEY no ambiente ou num ficheiro .env "
-            "(raiz do repo, role-prompt/, zero-shot/, one-few-shot/ ou pasta do script)."
+            "(raiz do repo, role-prompt/, zero-shot/, one-few-shot/, CoT/ ou pasta do script)."
         )
